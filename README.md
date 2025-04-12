@@ -30,7 +30,7 @@ VQLens is a front-end and back-end separated project designed to provide a demo 
 
 ### Clone or download this repository:
    ```bash
-   git clone https://github.com/Dora-sha/VQLens.git
+   git clone https://github.com/DBGroup-SUSTech/VQLens.git
    ```
 
 
