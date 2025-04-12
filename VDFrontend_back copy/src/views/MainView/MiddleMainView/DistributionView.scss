@@ -1,0 +1,246 @@
+@use 'sass:math';
+@use '../../../../define.scss' as *;
+
+
+.mapview-class {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    box-sizing: inherit;
+}
+
+.popper-tooltip {
+    position: absolute;
+    width: max-content;
+    left: 0px;
+    top: 0px;
+    z-index: 20;
+    background: #222;
+    color: white;
+    box-shadow: 0 0 1px hsla(0, 0%, 0%, 0.6), 0 0 3px hsla(0, 0%, 0%, 0.05);
+    padding: 2px 6px 4px 6px;
+    border-radius: 4px;
+    font-size: $font-d2;
+
+    display: flex;
+    justify-content: center;
+    box-sizing: border-box;
+    pointer-events: none;
+    text-align: center;
+
+    opacity: 1;
+    transition: opacity 150ms, visibility 150ms;
+
+    // border-radius: 50%; /* 使图片呈圆形 */
+
+    &.hidden {
+        opacity: 0;
+    }
+
+    &#popper-tooltip-bottom {
+        z-index: 19;
+        background: $purple-900;
+
+        .popper-arrow {
+            background: $purple-900;
+        }
+    }
+
+    .popper-content {
+        max-width: 300px;
+        max-height: 200px;
+        line-height: 1.5;
+        overflow: hidden;
+        display: flex;
+
+        .tooltip-image {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+            // border-radius: 50%; /* 使图片呈圆形 */
+            
+        }
+    }
+
+    .popper-arrow {
+        position: absolute;
+        background: #222;
+        width: 8px;
+        height: 8px;
+        transform: rotate(45deg);
+    }
+}
+
+.distribution-main {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    position: relative;
+    box-sizing: inherit;
+}
+
+.embedding-svg {
+    width: 100%;
+    height: 100%;
+    border-radius: $border-radius;
+    box-sizing: inherit;
+}
+
+.embedding-svg .umap-group .contour-group {
+    transition: opacity, 300ms ease-in-out;
+    opacity: 1;
+}
+
+.embedding-svg .umap-group .contour-group.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+  
+.embedding-svg .umap-group .contour-group-generic{
+    transition: opacity, 300ms ease-in-out;
+    mix-blend-mode: multiply;
+    opacity: 1;
+}
+  
+.embedding-svg .umap-group .contour-group-generic.hidden{
+    opacity: 0;
+    pointer-events: none;
+  }
+
+.embedding-canvas {
+    transition: opacity, 300ms ease-in-out;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 2;
+}
+
+.embedding-canvas.hidden {
+    opacity: 0;
+}
+
+.embedding-canvas.faded {
+    opacity: 0.4;
+}
+
+.prompt-point {
+    fill: $gray-700;
+    opacity: 0.4;
+}
+
+.topic-grid-canvas {
+    position: absolute;
+    transition: opacity, 300ms ease-in-out;
+    top: 0px;
+    left: 0px;
+    z-index: 1;
+    box-sizing: inherit;
+}
+
+.topic-grid-canvas.faded {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.topic-grid-canvas.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.search-point-canvas {
+    transition: opacity, 300ms ease-in-out;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 3;
+    background: hsla(0, 100%, 100%, 0.6);
+}
+
+.search-point-canvas.hidden {
+    opacity: 0;
+}
+
+.search-point-canvas.faded {
+    opacity: 0.4;
+}
+
+
+.top-svg {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    border-radius: $border-radius;
+    z-index: 4;
+}
+
+.top-svg .mouse-track-rect {
+    fill: none;
+}
+
+.top-svg .label-background {
+    transition: 300ms ease-in-out ease-in-out;
+    fill: white;
+    opacity: 0;
+}
+
+.top-svg .label-background.hidden {
+    opacity: 0;
+}
+
+.top-svg .highlight-point {
+    fill: $gray-900;
+    stroke: $gray-50;
+}
+
+.top-svg .topic-label {
+    text-anchor: middle;
+    font-family: 'Lato';
+    pointer-events: none;
+    line-height: 1;
+    will-change: transform;
+    fill: black;
+}
+
+.top-svg .topic-label text {
+    text-rendering: geometricPrecision;
+}
+
+.top-svg .topic-label.top {
+    text-anchor: middle;
+    dominant-baseline: auto;
+}
+
+.top-svg .topic-label.bottom {
+    text-anchor: middle;
+    dominant-baseline: hanging;
+}
+
+.top-svg .topic-label.left {
+    text-anchor: end;
+    dominant-baseline: middle;
+}
+
+.top-svg .topic-label.right {
+    text-anchor: start;
+    dominant-baseline: middle;
+}
+
+.top-svg .topic-label.top tspan {
+    text-anchor: middle;
+    dominant-baseline: auto;
+}
+
+.top-svg .topic-label.bottom tspan {
+    text-anchor: middle;
+    dominant-baseline: hanging;
+}
+
+.top-svg .topic-label.left tspan {
+    text-anchor: end;
+    dominant-baseline: hanging;
+}
+
+.top-svg .topic-label.right tspan {
+    text-anchor: start;
+    dominant-baseline: hanging;
+}
